@@ -10,19 +10,19 @@
   <p><a href="/inserir.html">INSERIR NOVO USUÁRIO</a></p>
 
   <script>
-    const url = '/usuarios';
+    const url = '/informacoesListar';
   
     fetch(url)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
-        let usuarios = data;
+        let infoGerais = data;
         let saida = '';
-        usuarios.map(function(usuario) {
-          saida += '<strong> '+ `${usuario.nome_completo}` + '</strong> ' + `${usuario.email}`  + ' - ' +  `${usuario.telefone}`;
-          saida += ' - <a href="/atualizar.html?userId=' + `${usuario.userId}` + '">EDITAR</a>';
-          saida += ' | <a href="/removeUsuario?userId='+`${usuario.userId}`+'">REMOVER</a></br>';
+        infoGerais.map(function(infoGerais) {
+          saida += '<strong> '+ `${tb_info_gerais.nome_info_gerais}` + '</strong> ' + `${tb_info_gerais.cargo_info_gerais}`  + ' - ' +  `${tb_info_gerais.especialidade_gerais}`;
+          saida += ' - <a href="/atualizar.html?userId=' + `${tb_info_gerais.id_info_gerais}` + '">EDITAR</a>';
+          saida += ' | <a href="/removeUsuario?userId='+`${tb_info_gerais.id_info_gerais}`+'">REMOVER</a></br>';
         });
         document.getElementById('resultado').innerHTML = saida;
       })
