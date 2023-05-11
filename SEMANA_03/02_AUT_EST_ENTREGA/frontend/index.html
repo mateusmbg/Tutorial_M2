@@ -20,9 +20,9 @@
         let infoGerais = data;
         let saida = '';
         infoGerais.map(function(infoGerais) {
-          saida += '<strong> '+ `${tb_info_gerais.nome_info_gerais}` + '</strong> ' + `${tb_info_gerais.cargo_info_gerais}`  + ' - ' +  `${tb_info_gerais.especialidade_gerais}`;
-          saida += ' - <a href="/atualizar.html?userId=' + `${tb_info_gerais.id_info_gerais}` + '">EDITAR</a>';
-          saida += ' | <a href="/removeUsuario?userId='+`${tb_info_gerais.id_info_gerais}`+'">REMOVER</a></br>';
+          saida += '<strong> '+ `${infoGerais.nome_info_gerais}` + '</strong> ' + `${infoGerais.cargo_info_gerais}`  + ' - ' +  `${infoGerais.especialidade_gerais}`;
+          saida += ' - <a href="/atualizar.html?userId=' + `${infoGerais.id_info_gerais}` + '">EDITAR</a>';
+          saida += ' | <a href="/removeUsuario?userId='+`${infoGerais.id_info_gerais}`+'">REMOVER</a></br>';
         });
         document.getElementById('resultado').innerHTML = saida;
       })
