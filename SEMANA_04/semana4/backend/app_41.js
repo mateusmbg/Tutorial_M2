@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 const sqlite3 = require('sqlite3').verbose();
-const DBPATH = 'data/curriculo_atualizacao01.db';
+const DBPATH = 'data/dbUser.db';
 
 const hostname = '127.0.0.1';
 const port = 3000;
@@ -17,28 +17,45 @@ app.use(express.static("frontend/"));
 app.use(express.json());
 
 // Retorna todos registros (é o R do CRUD - Read)
-app.get('/informacoesListar', (req, res) => {
+app.get('/listar', (req, res) => {
 	res.statusCode = 200;
 	res.setHeader('Access-Control-Allow-Origin', '*');
 	var db = new sqlite3.Database(DBPATH); // Abre o banco
-	var sql = 'SELECT * FROM tb_info_gerais ORDER BY nome_info_gerais COLLATE NOCASE';
-		db.all(sql, [],  (err, rows ) => {
-			if (err) {
-				throw err;
+	var sql1 = 'SELECT * FROM usuario ORDER BY nome_completo COLLATE NOCASE';
+		
+	db.all(sql1, [],  (err1, rows1 ) => {
+			if (err1) {
+				throw err1;
 			}
-			res.json(rows);
+			var sql2 = 'SELECT * FROM projeto';
+			db.all(sql2, [],  (err2, rows2 ) => {
+				if (err2) {
+					throw err2;
+				}
+
+				const retorno = {
+					usuarios: rows1,
+					projetos: rows2
+				};
+
+				res.json(retorno);
+				// res.render("xxx", {
+				// 	usuarios: rows1,
+				// 	projetos: rows2
+				// })
+			});
 		});
 		db.close(); // Fecha o banco
 });
 
 // Insere um registro (é o C do CRUD - Create)
-app.post('/informacoesInserir', urlencodedParser, (req, res) => {
+app.post('/insereUsuario', urlencodedParser, (req, res) => {
 	res.statusCode = 200;
 	res.setHeader('Access-Control-Allow-Origin', '*'); 
 	var db = new sqlite3.Database(DBPATH); // Abre o banco
-	sql = "INSERT INTO tb_info_gerais (nome_info_gerais, cargo_info_gerais, especialidade_gerais) VALUES ('" + req.body.nome_info_gerais + "', '" + req.body.formacao_ifo_gerais + "', '" + req.body.especialidade_gerais + "')";
+	sql = "INSERT INTO usuario (nome_completo, email, telefone) VALUES ('" + req.body.nome + "', '" + req.body.email + "', " + req.body.telefone + ")";
 	console.log(sql);
-	db.run(sql, [],  err => {
+	db.all(sql, [],  err => {
 		if (err) {
 		    throw err;
 		}	
@@ -49,10 +66,10 @@ app.post('/informacoesInserir', urlencodedParser, (req, res) => {
 });
 
 // Monta o formulário para o update (é o U do CRUD - Update)
-app.get('/informacoesAtualizar', (req, res) => {
+app.get('/atualizaUsuario', (req, res) => {
 	res.statusCode = 200;
 	res.setHeader('Access-Control-Allow-Origin', '*'); 
-	sql = "SELECT * FROM tb_info_gerais WHERE id_info_gerais ="+ req.query.id_info_gerais;
+	sql = "SELECT * FROM usuario WHERE userId="+ req.query.userId;
 	console.log(sql);
 	var db = new sqlite3.Database(DBPATH); // Abre o banco
 	db.all(sql, [],  (err, rows ) => {
@@ -68,10 +85,10 @@ app.get('/informacoesAtualizar', (req, res) => {
 app.post('/atualizaUsuario', urlencodedParser, (req, res) => {
 	res.statusCode = 200;
 	res.setHeader('Access-Control-Allow-Origin', '*'); 
-	sql = "UPDATE tb_info_gerais SET nome_info_gerais ='" + req.body.nome + "', cargo_info_gerais = '" + req.body.cargo + "' , especialidade_gerais ='" + req.body.telefone + "' WHERE id_info_gerais ='" + req.body.id_info_gerais + "'";
+	sql = "UPDATE usuario SET nome_completo='" + req.body.nome + "', email = '" + req.body.email + "' , telefone='" + req.body.telefone + "' WHERE userId='" + req.body.userId + "'";
 	console.log(sql);
 	var db = new sqlite3.Database(DBPATH); // Abre o banco
-	db.run(sql, [],  err => {
+	db.all(sql, [],  err => {
 		if (err) {
 		    throw err;
 		}
@@ -85,10 +102,10 @@ app.post('/atualizaUsuario', urlencodedParser, (req, res) => {
 app.get('/removeUsuario', urlencodedParser, (req, res) => {
 	res.statusCode = 200;
 	res.setHeader('Access-Control-Allow-Origin', '*'); 
-	sql = "DELETE FROM tb_info_gerais WHERE id_info_gerais='" + req.query.id_info_gerais + "'";
+	sql = "DELETE FROM usuario WHERE userId='" + req.query.userId + "'";
 	console.log(sql);
 	var db = new sqlite3.Database(DBPATH); // Abre o banco
-	db.run(sql, [],  err => {
+	db.all(sql, [],  err => {
 		if (err) {
 		    throw err;
 		}
