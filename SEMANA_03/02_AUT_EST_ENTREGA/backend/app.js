@@ -36,7 +36,7 @@ app.post('/informacoesInserir', urlencodedParser, (req, res) => {
 	res.statusCode = 200;
 	res.setHeader('Access-Control-Allow-Origin', '*'); 
 	var db = new sqlite3.Database(DBPATH); // Abre o banco
-	sql = "INSERT INTO tb_info_gerais (nome_info_gerais, cargo_info_gerais, especialidade_gerais) VALUES ('" + req.body.nome_info_gerais + "', '" + req.body.cargo_ifo_gerais + "', '" + req.body.especialidade_gerais + "')";
+	sql = "INSERT INTO tb_info_gerais (nome_info_gerais, cargo_info_gerais, especialidade_gerais) VALUES ('" + req.body.nome_info_gerais + "', '" + req.body.cargo_info_gerais + "', '" + req.body.especialidade_gerais + "')";
 	console.log(sql);
 	db.run(sql, [],  err => {
 		if (err) {
@@ -85,7 +85,7 @@ app.post('/atualizaUsuario', urlencodedParser, (req, res) => {
 app.get('/removeUsuario', urlencodedParser, (req, res) => {
 	res.statusCode = 200;
 	res.setHeader('Access-Control-Allow-Origin', '*'); 
-	sql = "DELETE FROM tb_info_gerais WHERE id_info_gerais='" + req.query.id_info_gerais + "'";
+	sql = "DELETE FROM tb_info_gerais WHERE id_info_gerais='" + req.query.userId + "'";
 	console.log(sql);
 	var db = new sqlite3.Database(DBPATH); // Abre o banco
 	db.run(sql, [],  err => {
