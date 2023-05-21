@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=Poppins:wght@700&family=Righteous&display=swap');
+
+:root {
+    --font-size-small: 18px;
+    --font-size-medium: 20px;
+    --font-size-large: 22px;
+    --fontsize-extra-large: 40px;
+    --font-size-mega: 66px;
+
+    --font-family: 'Fira Code', monospace;
+
+    --color-primary:#11111c;
+    --color-white: #eaeaea;
+    --color-grey: grey;
+    --color-blue: #3a3cbb;
+}
+
+body {
+    font-family: var(--font-family);
+    color: var(--color-white);
+    background-color: var(--color-primary);
+    scroll-behavior: smooth ;
+}
+
+.cabecalho{
+    padding: 5%;
+    display: flex;
+    text-decoration: none;
+}
+.menuItens {
+    color: var(--color-blue);
+    font-size: var(--font-size-small);
+    width: auto;
+}
+
+.descricao {
+    font-size: var(--font-size-mega);
+    width: auto;
+    text-align: center;
+}
+
+.descricao color {
+    color: var(--color-blue);
+}
+
+.habilidades {
+    font-size: var(--font-size-medium);
+    color: var(--color-grey);
+    padding-left: 5%;
+}
+
+.habilidadesItens  {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.habilidadesItens h3 {
+    font-size: var(--font-size-large);
+    color: var(--color-blue);
+}
+
+.code {
+    font-size: var(--fontsize-extra-large);
+    color:var(--color-blue);
+    padding-top: 5%;
+    padding-left: 5%;
+}
+
+.projetos h4 {
+    font-size: var(--fontsize-extra-large);
+    color:var(--color-blue);
+
+}
+
+.projetos {
+    flex-direction: column ;
+    align-items: center;
+    padding: 5%;
+    font-size: var(--font-size-large);
+    color: var(--color-grey);
+}
+
+.experiencia {
+    padding: 5%; 
+}
+
+.experiencia h6 {
+    font-size: var(--font-size-large);
+    color: var(--color-white);
+    text-align: end; 
+}
+
+.experiencia p {
+    text-align: center;
+    font-size: var(--font-size-medium);
+    color: var(--color-grey);
+}
+
+.experiencia h5 {
+    font-size: var(--fontsize-extra-large);
+    color:var(--color-blue);
+}
+
+.sobreMim {
+    padding: 5%;
+}
+
+.sobreMim h5 {
+    text-align: left;
+    font-size: var(--fontsize-extra-large);
+    color:var(--color-blue);
+}
+
+.sobreMim p {
+    text-align: justify;
+    font-size: var(--font-size-medium);
+    color:var(--color-grey);
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.cabecalhoMenuLink1 {
+    color: var(--color-white);
+    padding: 5%;
+    
+}
+
+.cabecalhoMenuLink2 {
+    color: var(--color-white);
+    padding: 5%;
+}
+
+.cabecalhoMenuLink3 {
+    color: var(--color-white);
+    padding: 5%;   
+    display: flex;
+}
+
+.links {
+    padding: 5%;
+    color: var(--color-grey);
+    margin: auto;
+}
+
+.menuLinks {
+    display: flex;
+    justify-content: center;
+}
